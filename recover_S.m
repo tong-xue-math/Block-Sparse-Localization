@@ -20,7 +20,7 @@ switch method
                 variable u(d + m, 1)
                 minimize( norm(u(d+1:end), 1) )
                 subject to
-                    mtilde == B * u;
+                    norm(mtilde - B * u, 'fro') <= tau_R;
             cvx_end
 
             Q_joint(:, ell) = u(1:d);
