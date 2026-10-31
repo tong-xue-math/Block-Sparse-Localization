@@ -110,8 +110,6 @@ end
 %% Add sparse corruptions
 S_D = zeros(n, m);
 
-S_true_support = (S_D ~= 0)';   % m x n
-
 for i = 1:n_c
     target_idx_i = (i - 1) * p_c + 1 : i * p_c;
     bad_i = corrupted_anchor{i};
@@ -121,6 +119,8 @@ for i = 1:n_c
     S_D(target_idx_i, bad_i) = ...
         corrupt_level * Dsq_true(target_idx_i, bad_i) .* signs;
 end
+
+S_true_support = (S_D ~= 0)';   % m x n
 
 Dsq_tilde = Dsq_noisy + S_D;
 
